@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const FirstPage = () => (
+  <div>
+    <h1>This is the first page</h1>
+    <Link to="/secondpage">Second Page</Link>
+    <Link to="/thirdpage">Third Page</Link>
+  </div>
+)
+
+const SecondPage = () => (
+  <div>
+    <h1>This is the second page</h1>
+    <Link to="/">First Page</Link>
+    <Link to="/thirdpage">Third Page</Link>
+  </div>
+)
+
+const ThirdPage = () => (
+  <div>
+    <h1>This is the third page</h1>
+    <Link to="/">First Page</Link>
+    <Link to="/secondpage">Second Page</Link>
+  </div>
+)
+
+const App = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route path="/secondpage" component={SecondPage}/>
+      <Route path="/thirdpage" component={ThirdPage}/>
+      <Route path="/" component={FirstPage}/>
+    </Switch>
+  </BrowserRouter>
+)
+
 
 export default App;
